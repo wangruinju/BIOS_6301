@@ -2,7 +2,7 @@
 title: 'Bios 6301: Assignment 1'
 author: "Rui Wang"
 date: "September 08, 2016"
-output: pdf_document
+output: html_document
 ---
 
 *(informally) Due Thursday, 08 September, 1:00 PM*
