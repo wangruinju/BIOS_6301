@@ -167,10 +167,8 @@ for (i in index) {
   }
   # create a row-size(temp) dataframe as newrow
   newrow <- data.frame(matrix(nrow = temp, ncol = 3))
-  for (j in 1:temp) {
-    newrow[j, 1] <- x$id[i]
-    newrow[j, 2] <- as.character.Date(x$dt[i] + years(temp))
-  }
+  newrow[, 1] <- x$id[i]
+  newrow[, 2] <- as.character.Date(x$dt[i] + years(1:temp))
   colnames(newrow) <- c("id","dt","a1c")
   x_new <- rbind(x_new,newrow)
 }
@@ -219,8 +217,7 @@ for (i in id_list) {
 
 ```{r}
 for (i in id_list) {
-  print(i)
-  print(sum(x$visit[x$id == i]))
+  print(max(x$visit[x$id == i]))
 }
 ```
 
