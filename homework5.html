@@ -155,7 +155,7 @@ sum(haart$indicator==1)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Use the <code>init.date</code>, <code>last.visit</code> and <code>death.date</code> columns to calculate a followup time (in days), which is the difference between the first and either the last visit or a death event (whichever comes first). If these times are longer than 1 year, censor them (this means if the value is above 365, set followup to 365). Print the quantile for this new variable.</li>
 </ol>
-<pre class="r"><code># if NA in the date.death, use the last - init
+<pre class="r"><code># if NA in the last.visit, use the date.death - init
 # if 
 haart$follow.up &lt;- ifelse(is.na(haart$last.visit), haart$date.death - haart$init.date,
                           haart$last.visit - haart$init.date)
