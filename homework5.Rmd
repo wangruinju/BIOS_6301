@@ -54,8 +54,8 @@ sum(haart$indicator==1)
 ```{r}
 # if NA in the date.death, use the last - init
 # if 
-haart$follow.up <- ifelse(is.na(haart$date.death), haart$last.visit - haart$init.date,
-                          haart$date.death - haart$init.date)
+haart$follow.up <- ifelse(is.na(haart$last.visit), haart$date.death - haart$init.date,
+                          haart$last.visit - haart$init.date)
 haart$follow.up[haart$follow.up > 365] <- 365
 quantile(haart$follow.up)
 ```

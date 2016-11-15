@@ -157,12 +157,12 @@ sum(haart$indicator==1)</code></pre>
 </ol>
 <pre class="r"><code># if NA in the date.death, use the last - init
 # if 
-haart$follow.up &lt;- ifelse(is.na(haart$date.death), haart$last.visit - haart$init.date,
-                          haart$date.death - haart$init.date)
+haart$follow.up &lt;- ifelse(is.na(haart$last.visit), haart$date.death - haart$init.date,
+                          haart$last.visit - haart$init.date)
 haart$follow.up[haart$follow.up &gt; 365] &lt;- 365
 quantile(haart$follow.up)</code></pre>
-<pre><code>##    0%   25%   50%   75%  100% 
-##   0.0 329.5 365.0 365.0 365.0</code></pre>
+<pre><code>##     0%    25%    50%    75%   100% 
+##   0.00 320.75 365.00 365.00 365.00</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Create another indicator variable representing loss to followup; this means the observation is not known to be dead but does not have any followup visits after the first year. How many records are lost-to-followup?</li>
 </ol>
