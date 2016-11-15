@@ -152,25 +152,21 @@ row.names(x) <- NULL
 
 ```{r}
 library("lubridate")
-
-test <- vector()
-for (i in seq(nrow(x)-1)) {
-  test <- c(test, as.integer(difftime(x$dt[i+1], x$dt[i], units='days')/365))
-}
-index <- which(test > 0)
-
 x_new <- x
 # append the new row after x_new
-for (i in index) {
-  if (x$id[i] == x$id[i+1]) {
-    temp <- as.integer(difftime(x$dt[i+1], x$dt[i], units='days')/365)    
+for (i in seq(nrow(x)-1)) {
+  # if the same id
+  if (x$id[i]==x$id[i+1]) {
+    temp <- floor(difftime(x$dt[i+1], x$dt[i], units='days')/365)    
   }
-  # create a row-size(temp) dataframe as newrow
+  if (temp > 0) {
+   # create a row-size(temp) dataframe as newrow
   newrow <- data.frame(matrix(nrow = temp, ncol = 3))
   newrow[, 1] <- x$id[i]
   newrow[, 2] <- as.character.Date(x$dt[i] + years(1:temp))
-  colnames(newrow) <- c("id","dt","a1c")
+  colnames(newrow) <- c("id","dt","a1c") 
   x_new <- rbind(x_new,newrow)
+  }
 }
 # set x_new to x back
 x <- x_new
