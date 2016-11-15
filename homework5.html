@@ -308,16 +308,14 @@ for (i in index) {
   if (x$id[i] == x$id[i+1]) {
     temp &lt;- as.integer(difftime(x$dt[i+1], x$dt[i], units='days')/365)    
   }
-  if (temp &gt; 0) {
-    # create a row-size(temp) dataframe as newrow
-    newrow &lt;- data.frame(matrix(nrow = temp, ncol = 3))
-    for (j in 1:temp) {
-      newrow[j, 1] &lt;- x$id[i]
-      newrow[j, 2] &lt;- as.character.Date(x$dt[i] + years(temp))
-      }
-    colnames(newrow) &lt;- c(&quot;id&quot;,&quot;dt&quot;,&quot;a1c&quot;)
-    x_new &lt;- rbind(x_new,newrow)
+  # create a row-size(temp) dataframe as newrow
+  newrow &lt;- data.frame(matrix(nrow = temp, ncol = 3))
+  for (j in 1:temp) {
+    newrow[j, 1] &lt;- x$id[i]
+    newrow[j, 2] &lt;- as.character.Date(x$dt[i] + years(temp))
   }
+  colnames(newrow) &lt;- c(&quot;id&quot;,&quot;dt&quot;,&quot;a1c&quot;)
+  x_new &lt;- rbind(x_new,newrow)
 }
 # set x_new to x back
 x &lt;- x_new
